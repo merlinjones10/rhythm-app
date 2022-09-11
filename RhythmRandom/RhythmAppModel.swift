@@ -1,38 +1,44 @@
-//
-//  RhythmAppModel.swift
-//  RhythmRandom
-//
-//  Created by Merlin Jones on 08/09/2022.
-//
-
 import Foundation
-
 
 struct RhythmApp {
     private(set) var rhythms: Array<Rhythm>
-    private(set) var displayedRhythm: Rhythm
+    private(set) var bar: Array<Rhythm>
+    private(set) var barLength: Int
     
-    mutating func change() {
-        displayedRhythm = rhythms.randomElement()!
-    }
-    
-    init(allRhytyms: Array<String>) {
+    init(allRhytyms: Array<String>, barLength: Int) {
         let baseValue: Double = 0.125
         rhythms = Array<Rhythm>()
         for index in allRhytyms.indices {
             rhythms.append(Rhythm(name: allRhytyms[index], id: index, value: baseValue * Double(index+1) ))
         }
-        displayedRhythm = rhythms.randomElement()!
+        self.barLength = barLength
+        self.bar = createBar(rhythms: rhythms, legnth: barLength)
     }
-
-    struct Rhythm: Identifiable {
+    // Intents
+    mutating func randomizeBar() {
+        self.bar = createBar(rhythms: self.rhythms, legnth: 4)
+    }
+    
+    // Data types
+    struct Rhythm: Identifiable, Hashable {
         var name: String
-        var id: Int = 1
+        var id: Int
         var value: Double = 0.25
     }
 }
 
+// External functions and type declarations
+typealias Bar = Array<RhythmApp.Rhythm>
 
-// PLAN,
-// CLICK BUTTON. CHANGE RHYTHM
-//
+func createBar(rhythms: Bar, legnth: Int) -> Bar {
+    var newBar: Bar = []
+    for _ in 0..<legnth {
+        if var randomElement = rhythms.randomElement() {
+            randomElement.id = Int.random(in: 0..<1000)
+            newBar.append(randomElement)
+        }
+    }
+    return newBar
+}
+
+

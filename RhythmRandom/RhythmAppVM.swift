@@ -11,11 +11,9 @@ import SwiftUI
 
 class RhythmRandomizerVM: ObservableObject {
     
-    static let rhythmChoice = ["Quaver single","Crotchet", "Minim"]
-    
-    static func createRhythmApp() -> RhythmApp {
-        RhythmApp(allRhytyms: rhythmChoice)
-    }
+    static let rhythmChoice = ["Crotchet","quavers-2-joined","semiquavers-4-joined", "Group 1" , "Group 2", "Group 3"]
+
+    static func createRhythmApp() -> RhythmApp { RhythmApp(allRhytyms: rhythmChoice, barLength: 4) }
     
     @Published private var model: RhythmApp = createRhythmApp()
     
@@ -23,12 +21,12 @@ class RhythmRandomizerVM: ObservableObject {
         model.rhythms
     }
     
-    var onlyRiddim: RhythmApp.Rhythm {
-        model.displayedRhythm
+    var bar: Bar {
+    model.bar
     }
     
-    func randomize() {
-        model.change()
+    func randomizeRhythms() {
+        model.randomizeBar()
     }
 }
 
