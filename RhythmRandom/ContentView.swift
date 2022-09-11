@@ -27,20 +27,6 @@ struct ContentView: View {
                 Spacer()
             }.padding()
         }
-
-//        HStack() {
-//            Spacer()
-//            Image(systemName: "arrow.left").border(.green).font(.largeTitle).onTapGesture {
-//                viewModel.randomize()
-//            }
-//            Spacer()
-//            NoteView(note: viewModel.onlyRiddim)
-//            Spacer()
-//            Image(systemName: "arrow.right").border(.green).font(.largeTitle).onTapGesture {
-//                viewModel.randomize()
-//            }
-//            Spacer()
-//        }
     }
 }
 

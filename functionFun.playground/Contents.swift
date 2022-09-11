@@ -17,44 +17,78 @@ let semiQuaver = Rhythm(name: "semiQuaver", value: 0.25)
 var barLength = 4.0
 let availableNotes: Array<Rhythm> = [crotchet, quaver, quaverPair, semiQuaver, dottedCrotchet, minim]
 
+//
+//func createBar(choices: Array<Rhythm>, length: Double) -> Array<Rhythm>  {
+//    // Error handling.
+//    var bar: Array<Rhythm> = []
+//    var amountLeftInBar = length
+//    var totalCurrentBarLength = 0.0
+//    var availableChoices = choices
+//
+//    while (totalCurrentBarLength < length) {
+//        amountLeftInBar = length - totalCurrentBarLength
+//        availableChoices = choices.filter { rhythm in
+//            return rhythm.value <= amountLeftInBar
+//        }
+//        if let randomChoice = availableChoices.randomElement() {
+//            bar.append(randomChoice)
+//            totalCurrentBarLength += randomChoice.value
+//        } else {
+//            print("No choices left")
+//            break
+//        }
+//    }
+//    return bar
+//}
+//
+//
+//let myBar = createBar(choices: availableNotes, length: 4.0)
+//
+//var total = 0.0
+//
+//for val in myBar {
+//    print(val.name)
+//    total += val.value
+//
+//}
+//print("\nTOTAL: \(total)")
 
-func createBar(choices: Array<Rhythm>, length: Double) -> Array<Rhythm>  {
-    // Error handling.
-    var bar: Array<Rhythm> = []
-    var amountLeftInBar = length
-    var totalCurrentBarLength = 0.0
-    var availableChoices = choices
+let myArr = [1,2,3,4,5]
+
+enum Direction {
+    case left
+    case right
+    case random
+}
+
+func rotateBar(_ arr: [Int], direction: Direction) -> Array<Int>{
+    var newArr = arr
+    if arr.isEmpty {return arr}
     
-    while (totalCurrentBarLength < length) {
-        amountLeftInBar = length - totalCurrentBarLength
-        availableChoices = choices.filter { rhythm in
-            return rhythm.value <= amountLeftInBar
+    if let lastElement = arr.last {
+        switch direction {
+        case .left:
+            newArr.append(arr[0])
+            newArr.removeFirst()
+        case .right:
+            newArr.insert(lastElement, at: 0)
+            newArr.removeLast()
+        case .random:
+            newArr.shuffle()
         }
-        if let randomChoice = availableChoices.randomElement() {
-            bar.append(randomChoice)
-            totalCurrentBarLength += randomChoice.value
-        } else {
-            print("No choices left")
-            break
-        }
+    } else {
+        return newArr
     }
-    return bar
+    return newArr
 }
 
+let newArr = rotateBar([1,2,3], direction: Direction.right)
 
-let myBar = createBar(choices: availableNotes, length: 4.0)
+print(newArr)
 
-var total = 0.0
-
-for val in myBar {
-    print(val.name)
-    total += val.value
-    
-}
-print("\nTOTAL: \(total)")
-
-
-
+// 123
+// 231 - L
+//312
 
 //func createBar(choices: Array<Rhythm>, length: Double) {
 //    // <- choice of values
