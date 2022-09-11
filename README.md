@@ -1,19 +1,22 @@
-#  
+# Random Rhythm generator
+For music tuition and practice. 
 
-Plan: 
+Next steps: 
+Set up unit tests
 
-Click on forward and back button to cycle through rhythms, have 3 rows of 4/4 rhythms that cycle or randomize
+## Goals: 
 
-
-MVP: 
-Click on Arrow and change the Crotchet to something else
-
-... 
-Plan 
-Set up MVVM
-Define the rhythms array i.e  ['image1', image2 etc]  
-
-
+- Add second "stave". 2 rows of rhytyms
+- Select time signature
+- Correct time signature image infront of rhytyms
+- Universal sizing of bars. No overflow
+- Lock to landscape. 
+- include rests
 
 
-
+### Stretch goals
+- Integrated metronome
+- auto shift rhythms after timer &or beats
+- full drum kit notation
+- choose from "well-known" rhythms library... clave, bossa, etc. 
+- Compound time sigs
