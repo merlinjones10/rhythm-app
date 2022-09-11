@@ -1,10 +1,3 @@
-//
-//  RhythmRandomApp.swift
-//  RhythmRandom
-// TOP LEVEL APP, Not Model
-//  Created by Merlin Jones on 07/09/2022.
-//
-
 import SwiftUI
 
 @main

@@ -28,5 +28,9 @@ class RhythmRandomizerVM: ObservableObject {
     func randomizeRhythms() {
         model.randomizeBar()
     }
+    
+    func rotatebar(direction: RhythmApp.Direction){
+        model.rotateModelBar(direction)
+    }
 }
 

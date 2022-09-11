@@ -17,13 +17,17 @@ struct ContentView: View {
             }
             HStack {
                 Spacer()
-                Image(systemName: "arrow.left")
+                Image(systemName: "arrow.left").onTapGesture {
+                    viewModel.rotatebar(direction: .left)
+                }
                 Spacer()
                 Image(systemName: "dice").onTapGesture {
                     viewModel.randomizeRhythms()
                 }
                 Spacer()
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrow.right").onTapGesture {
+                    viewModel.rotatebar(direction: .right)
+                }
                 Spacer()
             }.padding()
         }
