@@ -23,6 +23,7 @@ struct RhythmApp {
         self.bar = rotateBar(self.bar, direction: direction)
         
     }
+    
 
     // Data types
     struct Rhythm: Identifiable, Hashable {
@@ -35,6 +36,18 @@ struct RhythmApp {
         case left
         case right
         case random
+    }
+}
+
+// if debug?
+extension RhythmApp {
+    mutating func setTestVals() { bar =
+            [
+                RhythmRandom.RhythmApp.Rhythm(name: "a", id: 1, value: 0.625),
+                RhythmRandom.RhythmApp.Rhythm(name: "b", id: 2, value: 0.75),
+                RhythmRandom.RhythmApp.Rhythm(name: "c", id: 3, value: 0.375),
+                RhythmRandom.RhythmApp.Rhythm(name: "d", id: 4, value: 0.875)
+            ]
     }
 }
 
