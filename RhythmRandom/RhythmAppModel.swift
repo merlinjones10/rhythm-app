@@ -1,11 +1,16 @@
 import Foundation
 
 struct RhythmApp {
-    private(set) var rhythms: Array<Rhythm>
-    private(set) var bar: Array<Rhythm>
+    private(set) var rhythms: Array<Rhythm> //
+    private(set) var bar: Array<Rhythm> //
     private(set) var barLength: Int
+    private(set) var staves: Int
     
-    init(allRhytyms: Array<String>, barLength: Int) {
+    // [[staff{bar, positionId}], [...], [...]]
+    // init all 3 straight away or create on the fly
+    // create only initial and have a method that updates staves when staveNumber updates.
+    
+    init(allRhytyms: Array<String>, barLength: Int, staves: Int) {
         let baseValue: Double = 0.125
         rhythms = Array<Rhythm>()
         for index in allRhytyms.indices {
@@ -13,11 +18,13 @@ struct RhythmApp {
         }
         self.barLength = barLength
         self.bar = createBar(rhythms: rhythms, length: barLength)
+        self.staves = staves
+        
     }
     // Intents
     mutating func randomizeBar() {
         self.bar = createBar(rhythms: self.rhythms, length: 4)
-    }
+    } // No longer needed
     
     mutating func rotateModelBar(_ direction: Direction) {
         self.bar = rotateBar(self.bar, direction: direction)
@@ -29,7 +36,7 @@ struct RhythmApp {
     struct Rhythm: Identifiable, Hashable {
         var name: String
         var id: Int
-        var value: Double = 0.25
+        var value: Double = 1.0
     }
     
     enum Direction {

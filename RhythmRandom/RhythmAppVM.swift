@@ -13,7 +13,7 @@ class RhythmRandomizerVM: ObservableObject {
     
     static let rhythmChoice = ["Crotchet","quavers-2-joined","semiquavers-4-joined", "Group 1" , "Group 2", "Group 3"]
 
-    static func createRhythmApp() -> RhythmApp { RhythmApp(allRhytyms: rhythmChoice, barLength: 4) }
+    static func createRhythmApp() -> RhythmApp { RhythmApp(allRhytyms: rhythmChoice, barLength: 4, staves: 2) }
     
     @Published private var model: RhythmApp = createRhythmApp()
     

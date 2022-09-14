@@ -1,21 +1,21 @@
 import Cocoa
 
-struct Rhythm {
-var name: String
-var value: Double
-var rest: Bool = false
-}
-
-let base = 1
-let minim = Rhythm(name: "minim", value: 2.0)
-let crotchet = Rhythm(name: "crotchet", value: 1.0)
-let dottedCrotchet = Rhythm(name: "dottedCrotchet", value: 1.5)
-let quaver = Rhythm(name: "quaver", value: 0.5)
-let quaverPair = Rhythm(name: "quaverPair", value: 1.0)
-let semiQuaver = Rhythm(name: "semiQuaver", value: 0.25)
-
-var barLength = 4.0
-let availableNotes: Array<Rhythm> = [crotchet, quaver, quaverPair, semiQuaver, dottedCrotchet, minim]
+//struct Rhythm {
+//var name: String
+//var value: Double
+//var rest: Bool = false
+//}
+//
+//let base = 1
+//let minim = Rhythm(name: "minim", value: 2.0)
+//let crotchet = Rhythm(name: "crotchet", value: 1.0)
+//let dottedCrotchet = Rhythm(name: "dottedCrotchet", value: 1.5)
+//let quaver = Rhythm(name: "quaver", value: 0.5)
+//let quaverPair = Rhythm(name: "quaverPair", value: 1.0)
+//let semiQuaver = Rhythm(name: "semiQuaver", value: 0.25)
+//
+//var barLength = 4.0
+//let availableNotes: Array<Rhythm> = [crotchet, quaver, quaverPair, semiQuaver, dottedCrotchet, minim]
 
 //
 //func createBar(choices: Array<Rhythm>, length: Double) -> Array<Rhythm>  {
@@ -52,39 +52,39 @@ let availableNotes: Array<Rhythm> = [crotchet, quaver, quaverPair, semiQuaver, d
 //
 //}
 //print("\nTOTAL: \(total)")
-
-let myArr = [1,2,3,4,5]
-
-enum Direction {
-    case left
-    case right
-    case random
-}
-
-func rotateBar(_ arr: [Int], direction: Direction) -> Array<Int>{
-    var newArr = arr
-    if arr.isEmpty {return arr}
-    
-    if let lastElement = arr.last {
-        switch direction {
-        case .left:
-            newArr.append(arr[0])
-            newArr.removeFirst()
-        case .right:
-            newArr.insert(lastElement, at: 0)
-            newArr.removeLast()
-        case .random:
-            newArr.shuffle()
-        }
-    } else {
-        return newArr
-    }
-    return newArr
-}
-
-let newArr = rotateBar([1,2,3], direction: Direction.right)
-
-print(newArr)
+//
+//let myArr = [1,2,3,4,5]
+//
+//enum Direction {
+//    case left
+//    case right
+//    case random
+//}
+//
+//func rotateBar(_ arr: [Int], direction: Direction) -> Array<Int>{
+//    var newArr = arr
+//    if arr.isEmpty {return arr}
+//
+//    if let lastElement = arr.last {
+//        switch direction {
+//        case .left:
+//            newArr.append(arr[0])
+//            newArr.removeFirst()
+//        case .right:
+//            newArr.insert(lastElement, at: 0)
+//            newArr.removeLast()
+//        case .random:
+//            newArr.shuffle()
+//        }
+//    } else {
+//        return newArr
+//    }
+//    return newArr
+//}
+//
+//let newArr = rotateBar([1,2,3], direction: Direction.right)
+//
+//print(newArr)
 
 // 123
 // 231 - L
@@ -108,3 +108,23 @@ print(newArr)
 //
 //    // -> an array of rhythms whos total values = <length>
 //}
+
+enum StemDirection: String, CaseIterable {
+    case up = "-su"
+    case dowm = "-sd"
+    case upHeadless = "-su-headless"
+    case downHeadless = "-sd-headless"
+}
+
+
+func createRhythmSet(stem: StemDirection) -> [String] {
+    let availableRhythms = ["crot", "q-2", "sq-4", "grp-1", "grp-2", "grp-3"]
+    var rhytymSet = [String]()
+    for rhythm in availableRhythms {
+        rhytymSet.append("\(rhythm)\(stem.rawValue)")
+    }
+    return rhytymSet
+}
+
+
+print(createRhythmSet(stem: StemDirection.upHeadless))

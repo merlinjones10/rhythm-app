@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20CA3D1B28D2677E003BFB8F /* RhythmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA3D1A28D2677E003BFB8F /* RhythmDB.swift */; };
 		20ED118B28C949AB00D3ADC7 /* RhythmRandomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED118A28C949AB00D3ADC7 /* RhythmRandomApp.swift */; };
 		20ED118D28C949AB00D3ADC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ED118C28C949AB00D3ADC7 /* ContentView.swift */; };
 		20ED118F28C949AC00D3ADC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20ED118E28C949AC00D3ADC7 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20CA3D1A28D2677E003BFB8F /* RhythmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmDB.swift; sourceTree = "<group>"; };
 		20ED118728C949AB00D3ADC7 /* RhythmRandom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhythmRandom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20ED118A28C949AB00D3ADC7 /* RhythmRandomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmRandomApp.swift; sourceTree = "<group>"; };
 		20ED118C28C949AB00D3ADC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				20ED118C28C949AB00D3ADC7 /* ContentView.swift */,
 				20ED11B528CA503600D3ADC7 /* RhythmAppVM.swift */,
 				20ED11B728CA50A200D3ADC7 /* RhythmAppModel.swift */,
+				20CA3D1A28D2677E003BFB8F /* RhythmDB.swift */,
 				20ED118E28C949AC00D3ADC7 /* Assets.xcassets */,
 				20ED119028C949AC00D3ADC7 /* Preview Content */,
 			);
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20ED11B628CA503600D3ADC7 /* RhythmAppVM.swift in Sources */,
+				20CA3D1B28D2677E003BFB8F /* RhythmDB.swift in Sources */,
 				20ED11B828CA50A200D3ADC7 /* RhythmAppModel.swift in Sources */,
 				20ED118D28C949AB00D3ADC7 /* ContentView.swift in Sources */,
 				20ED118B28C949AB00D3ADC7 /* RhythmRandomApp.swift in Sources */,

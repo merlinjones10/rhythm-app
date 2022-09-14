@@ -29,11 +29,16 @@ struct ContentView: View {
                     viewModel.rotatebar(direction: .right)
                 }
                 Spacer()
-            }.padding()
+            }.padding().border(.green)
         }
     }
 }
 
+struct BarView: View {
+    var body: some View {
+        Text("Hello")
+    }
+}
 
 struct NoteView: View {
     let note: RhythmApp.Rhythm
