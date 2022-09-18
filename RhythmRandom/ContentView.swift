@@ -11,22 +11,22 @@ struct ContentView: View {
         VStack{
             Text("Notes").font(.title2)
             LazyHGrid(rows: oneRowGrid, spacing: 10) {
-                ForEach(viewModel.bar, id: \.self) {item in
-                    Image(item.name)
+                ForEach(viewModel.bar1.bar.indices, id: \.self) {index in
+                    Image(viewModel.bar1.bar[index])
                 }
             }
             HStack {
                 Spacer()
                 Image(systemName: "arrow.left").onTapGesture {
-                    viewModel.rotatebar(direction: .left)
+                    viewModel.changeBar(direction: .left)
                 }
                 Spacer()
                 Image(systemName: "dice").onTapGesture {
-                    viewModel.randomizeRhythms()
+                    viewModel.changeBar(direction: .random)
                 }
                 Spacer()
                 Image(systemName: "arrow.right").onTapGesture {
-                    viewModel.rotatebar(direction: .right)
+                    viewModel.changeBar(direction: .right)
                 }
                 Spacer()
             }.padding().border(.green)

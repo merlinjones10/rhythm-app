@@ -10,18 +10,12 @@ import XCTest
 
 class RhythmRandomTests: XCTestCase {
     var sut : RhythmApp!
-    let exampleData = ["a","b","c","d", "e", "f", "g"] // 7 items long
     let barLength = 4
-    let setBarForTest = [
-        RhythmRandom.RhythmApp.Rhythm(name: "a", id: 1, value: 0.625),
-        RhythmRandom.RhythmApp.Rhythm(name: "b", id: 2, value: 0.75),
-        RhythmRandom.RhythmApp.Rhythm(name: "c", id: 3, value: 0.375),
-        RhythmRandom.RhythmApp.Rhythm(name: "d", id: 4, value: 0.875)
-    ]
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = RhythmApp(allRhytyms: exampleData, barLength: barLength)
+        sut = RhythmApp()
+
     }
     
     override func tearDownWithError() throws {
@@ -30,21 +24,20 @@ class RhythmRandomTests: XCTestCase {
     }
     
     func testAppInit() throws {
-        XCTAssertEqual(sut.bar.count, barLength)
-        XCTAssertEqual(sut.rhythms.count, exampleData.count)
+        XCTAssertEqual(sut.firstBar.bar.count, barLength)
     }
     
-    func testRotation() throws {
-        sut.setTestVals()
-        // or store randomized and then rotate and reference the stored value to compare against. <- better practice. 
-        sut.rotateModelBar(.right)
-        XCTAssertTrue(setBarForTest[0].name == sut.bar[1].name)
-        XCTAssertTrue(setBarForTest[1].name == sut.bar[2].name)
-
-        sut.rotateModelBar(.left)
-        XCTAssertTrue(setBarForTest[0].name == sut.bar[0].name)
-        XCTAssertTrue(setBarForTest[1].name == sut.bar[1].name)
-
+    func testBarClass() throws {
+        let barToBeTested = MusicalBar(bLength: 4, stem: .upHeadless)
+        let staticBarArr = barToBeTested.bar
+        XCTAssertTrue(barToBeTested.bar.count == 4)
+        
+        barToBeTested.rotateBar(.right)
+        XCTAssertTrue(staticBarArr[2] == barToBeTested.bar[3])
+        barToBeTested.rotateBar(.left)
+        XCTAssertTrue(staticBarArr[2] == barToBeTested.bar[2])
+        barToBeTested.rotateBar(.random)
+        XCTAssertTrue(staticBarArr != barToBeTested.bar)
     }
     
 }

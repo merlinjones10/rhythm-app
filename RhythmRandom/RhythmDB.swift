@@ -1,46 +1,68 @@
-//
-//  RhythmDB.swift
-//  RhythmRandom
-//
-//  Created by Merlin Jones on 14/09/2022.
-//
-
 import Foundation
 
-struct Stave {
-    var rhythms: [RhythmApp.Rhythm]
-    var position: Int
-    let id: Int
-}
-
-//
-//let crotChoices: Set = ["crot-sd", "crot-su", "crot-sd-headless", "crot-su-headless"]
-//let qCHoices: Set = ["q-2-sd-headless", "q-2-su-headless", "q-2-joined-sd", "q-2-joined-su"]
-//let sqChoices: Set = ["sq-4-sd-headless", "sq-4-su-headless", "sq-4-sd", "sq-4-su"]
-//let grp1Choices: Set = ["grp-1-sd","grp-1-su","grp-1-sd-headless","grp-1-sd-headless"]
-//let grp2Choices: Set = ["grp-2-sd","grp-2-su","grp-2-sd-headless","grp-2-sd-headless"]
-//let grp3Choices: Set = ["grp-3-sd","grp-3-su","grp-3-sd-headless","grp-3-sd-headless"]
-//
-//let stemDirection = "sd"
-//let headless = "-headless"
-//
-//
-//let generic: Set = ["crot-\(stemDirection)\(headless)"]
-
-enum StemDirection: String, CaseIterable {
+enum StemType: String, CaseIterable {
     case up = "-su"
     case dowm = "-sd"
     case upHeadless = "-su-headless"
     case downHeadless = "-sd-headless"
 }
 
-
-func createRhythmSet(stem: StemDirection) -> [String] {
-    let availableRhythms = ["crot", "q-2", "sq-4", "grp-1", "grp-2", "grp-3"]
-    var rhytymSet = [String]()
-    for rhythm in availableRhythms {
-        rhytymSet.append("\(rhythm)\(stem.rawValue)")
-    }
-    return rhytymSet
+enum Direction {
+    case left
+    case right
+    case random
 }
+
+
+let all1bRhythms = Set(["crot", "q-2-joined", "sq-4", "grp-1", "grp-2", "grp-3"])
+
+class MusicalBar {
+    var bLength: Int
+    var stemType : StemType
+    var bar: [String]
+    
+    static let noteChoices = all1bRhythms
+    
+    init(bLength: Int, stem: StemType) {
+        self.stemType = stem
+        self.bLength = bLength
+        self.bar = MusicalBar.createBar(length: bLength, stemType: stemType)
+    }
+    
+    class func createBar(length: Int, stemType: StemType) -> [String] {
+        var newBar = [String]()
+        for _ in 0..<length {
+            if let randomRhythm = noteChoices.randomElement() {
+                newBar.append("\(randomRhythm)\(stemType.rawValue)")
+            }
+        }
+        print(newBar)
+        return newBar
+    }
+    
+    func rotateBar(_ direction: Direction ) {
+        var arrHolder = self.bar
+       
+        switch direction {
+        case .left:
+            arrHolder.append(arrHolder[0])
+            arrHolder.removeFirst()
+            self.bar = arrHolder
+        case .right:
+            if let lastElement = arrHolder.last {
+                arrHolder.insert(lastElement, at: 0)
+                arrHolder.removeLast()
+                self.bar = arrHolder
+            }
+            case .random:
+            self.bar = MusicalBar.createBar(length: bLength, stemType: stemType)
+            while arrHolder == bar {
+                bar.shuffle()
+            }
+        }
+    }
+}
+
+
+
 
