@@ -9,46 +9,66 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
-            Text("Notes").font(.title2)
-            LazyHGrid(rows: oneRowGrid, spacing: 10) {
-                ForEach(viewModel.bar1.bar.indices, id: \.self) {index in
-                    Image(viewModel.bar1.bar[index])
-                }
-            }
-            HStack {
-                Spacer()
-                Image(systemName: "arrow.left").onTapGesture {
-                    viewModel.changeBar(direction: .left)
-                }
-                Spacer()
-                Image(systemName: "dice").onTapGesture {
-                    viewModel.changeBar(direction: .random)
-                }
-                Spacer()
-                Image(systemName: "arrow.right").onTapGesture {
-                    viewModel.changeBar(direction: .right)
-                }
-                Spacer()
-            }.padding().border(.green)
+            BarView(bar: viewModel.bars[0])
+            BarView(bar: viewModel.bars[1])
+
+//            Controls(viewModel: viewModel)
         }
     }
 }
 
 struct BarView: View {
-    var body: some View {
-        Text("Hello")
-    }
-}
-
-struct NoteView: View {
-    let note: RhythmApp.Rhythm
+    let bar: MusicalBar
+    let oneRowGrid = [GridItem(.fixed(4))]
     var body: some View {
         HStack {
-            Image(note.name)
+            InlineControls()
+            LazyHGrid(rows: oneRowGrid, spacing: 5.0 ) {
+                ForEach(bar.bar.indices, id: \.self) { index in
+                    Image(bar.bar[index]).resizable().aspectRatio(contentMode: .fit).frame(width: 175, height: 100, alignment: .leading)
+                }
+                
+            }
+            Image(systemName: "arrow.right").frame(width: 30, height: 100, alignment: .topLeading)
+            
         }
+
     }
 }
-
+struct InlineControls: View {
+//    var viewModel: RhythmRandomizerVM
+    // MARK: - to do
+    // attach controls to buttons to change bar
+    var body: some View {
+        VStack {
+            Image(systemName: "arrow.left")
+            Spacer()
+            Image(systemName: "dice")
+        }.frame(width: 30 , height: 100, alignment: .topLeading).border(.blue)
+        
+    }
+}
+struct Controls: View {
+    var viewModel: RhythmRandomizerVM
+    var body: some View {
+        HStack {
+            Spacer()
+            Image(systemName: "arrow.left").onTapGesture {
+                viewModel.changeBar(direction: .left)
+            }
+            Spacer()
+            Image(systemName: "dice").onTapGesture {
+                viewModel.changeBar(direction: .random)
+            }
+            Spacer()
+                Image(systemName: "arrow.right").onTapGesture {
+                    viewModel.changeBar(direction: .right)
+                }
+            Spacer()
+        }.padding().border(.green)
+        
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

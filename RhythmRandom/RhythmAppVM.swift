@@ -18,6 +18,10 @@ class RhythmRandomizerVM: ObservableObject {
     var bar1: MusicalBar{
         model.firstBar
     }
+    
+    var bars: [MusicalBar] {
+        model.all4Bars
+    }
 
     func changeBar(direction: Direction){
         model.changeBar(direction)

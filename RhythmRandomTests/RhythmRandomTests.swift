@@ -25,6 +25,7 @@ class RhythmRandomTests: XCTestCase {
     
     func testAppInit() throws {
         XCTAssertEqual(sut.firstBar.bar.count, barLength)
+        XCTAssertEqual(sut.all4Bars.count, 4)
     }
     
     func testBarClass() throws {

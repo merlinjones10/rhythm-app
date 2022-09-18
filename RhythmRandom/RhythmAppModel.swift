@@ -3,9 +3,16 @@ import Foundation
 struct RhythmApp {
     private(set) var barLength = 4
     private(set) var firstBar: MusicalBar
+    private(set) var all4Bars: [MusicalBar]
+    
     
     init() {
         firstBar = MusicalBar(bLength: barLength, stem: .up)
+        all4Bars = [MusicalBar]()
+
+        for stem in StemType.allCases {
+            all4Bars.append(MusicalBar(bLength: 4, stem: stem))
+        }
     }
     
     // Intents
@@ -13,28 +20,10 @@ struct RhythmApp {
         firstBar.rotateBar(direction)
     }
     
-
-    // Data types
-    struct Rhythm: Identifiable, Hashable {
-        var name: String
-        var id: Int
-        var value: Double = 1.0
-    }
 }
 
-// External functions and type declarations
-typealias Bar = Array<RhythmApp.Rhythm>
 
-func createBar(rhythms: Bar, length: Int) -> Bar {
-    var newBar: Bar = []
-    for _ in 0..<length {
-        if var randomElement = rhythms.randomElement() {
-            randomElement.id = Int.random(in: 0..<1000)
-            newBar.append(randomElement)
-        }
-    }
-    return newBar
-}
+
 
 
 
