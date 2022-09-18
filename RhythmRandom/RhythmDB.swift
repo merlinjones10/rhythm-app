@@ -36,7 +36,6 @@ class MusicalBar {
                 newBar.append("\(randomRhythm)\(stemType.rawValue)")
             }
         }
-        print(newBar)
         return newBar
     }
     
